@@ -32,7 +32,6 @@ client.connect(err => {
       })
   })
 
-
   // Item get to checkout component 
 
   app.get('/checkout/:id', (req, res) => {
@@ -70,6 +69,15 @@ client.connect(err => {
             res.send(documents)
         })
 })
+
+// DELETE Method 
+  app.get('/delete/:id', (req, res) =>{
+    productCollection.deleteOne({ _id: ObjectId(req.params.id) })
+    .then(result =>{
+      res.send(result.deletedCount > 0)
+    })
+  })
+
 
   console.log("Database Connection Successfully");
 });
